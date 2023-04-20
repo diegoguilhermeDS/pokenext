@@ -1,11 +1,7 @@
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1 className='font-semibold text-4xl dark:text-red-600'>PokeNext</h1>
-    </main>
+    <div className="container mx-auto pt-4">
+      <h1 className='font-semibold text-3xl text-center text-brand-150'>PokeNext</h1>
+    </div>
   )
 }
