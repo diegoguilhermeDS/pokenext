@@ -18,7 +18,7 @@ export default function Layout({ children }: iLayout) {
         <title>PokeNext</title>
       </Head>
       <Navbar />
-      <main className={`bg-gray-100 min-h-screen ${font.className}}`}>{children}</main>
+      <main className={`bg-gray-100 min-h-[39.5rem] ${font.className}}`}>{children}</main>
       <Footer/>
     </>
   );
