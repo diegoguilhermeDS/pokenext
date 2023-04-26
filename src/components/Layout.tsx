@@ -17,7 +17,7 @@ export default function Layout({ children }: iLayout) {
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <title>PokeNext</title>
       </Head>
-      <Navbar />
+      <Navbar/>
       <main className={`bg-gray-100 min-h-[39.5rem] ${font.className}}`}>{children}</main>
       <Footer/>
     </>
