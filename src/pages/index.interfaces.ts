@@ -1,11 +1,14 @@
 export interface iHomeProps {
-  listPokemon: Array<any>;
+  listPokemon: Array<iPokemonBaseWithId>;
 }
 
 export interface iPokemonBaseRequest {
   name: string;
   url: string;
-  id: number
+}
+
+export interface iPokemonBaseWithId extends iPokemonBaseRequest {
+  id: number;
 }
 
 export interface iPokemon {

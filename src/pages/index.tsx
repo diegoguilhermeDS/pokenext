@@ -1,5 +1,5 @@
 import Search from "@/components/InputSearch";
-import { iHomeProps, iPokemonBaseRequest } from "./index.interfaces";
+import { iHomeProps, iPokemonBaseWithId } from "./index.interfaces";
 import { api } from "@/services/api";
 import ListPokemon from "@/components/ListPokemon";
 
@@ -12,7 +12,7 @@ export async function getStaticProps() {
     },
   });
 
-  res.data.results.forEach((item: iPokemonBaseRequest, index: number) => item.id = index+1)
+  res.data.results.forEach((item: iPokemonBaseWithId, index: number) => item.id = index+1)
 
   return {
     props: {
