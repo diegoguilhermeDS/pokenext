@@ -1,4 +1,4 @@
-import { PokemonRoot, Stat } from "@/pages/pokemon/pokemon.interfaces";
+import { PokemonRoot, Stat } from "@/interfaces/pokemon.interfaces";
 import React from "react";
 import styled from "styled-components";
 
@@ -9,7 +9,6 @@ interface iStatsPokemonProps {
 const Range = styled.input`
   -webkit-appearance: none;
   outline: none;
-  width: 160px;
   height: 8px;
   background: #d3d3d3;
   border-radius: 12px;
@@ -28,18 +27,10 @@ const Range = styled.input`
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: #FF8552;
+    background: #ff8552;
     cursor: pointer;
-    box-shadow: -170px 0 0 160px #FF8552;
+    box-shadow: -170px 0 0 160px #ff8552;
   }
-
-
-  /* &::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #04aa6d;
-    cursor: pointer;
-  } */
 `;
 
 export default function StatsPokemon({ pokemon }: iStatsPokemonProps) {
@@ -48,7 +39,7 @@ export default function StatsPokemon({ pokemon }: iStatsPokemonProps) {
       {pokemon.stats.map((item: Stat, index: number) => {
         return (
           <li key={index}>
-            <h4 className="font-semibold text-sm text-slate-800">
+            <h4 className="font-semibold text-sm text-slate-800 dark:text-white">
               {item.stat.name}
             </h4>
             <Range
@@ -59,6 +50,7 @@ export default function StatsPokemon({ pokemon }: iStatsPokemonProps) {
               max="180"
               value={item.base_stat}
               disabled
+              className="dark:bg-gray-700 w-32 lg:w-[160px]"
             />
           </li>
         );

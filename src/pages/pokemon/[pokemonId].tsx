@@ -1,18 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { api } from "@/services/api";
 import React from "react";
-import { iPokemonBaseRequest } from "../index.interfaces";
 import { GetStaticProps } from "next";
-import { Type, iPokemonPageProps } from "./pokemon.interfaces";
-import Image from "next/image";
-import { PokemonContainerImg, PokemonType } from "./style";
+import Link from "next/link";
+
+import { usePokemon } from "@/providers/pokemon.context";
+import { api } from "@/services/api";
 import DetailsPokemon from "@/components/DetailsCompPokemon/DetailsPokemon";
 import StatsPokemon from "@/components/DetailsCompPokemon/StatsPokemon";
 import TagsDetailsPokemon from "@/components/DetailsCompPokemon/TagsDetailsPokemon";
-import { usePokemonDetails } from "@/providers/pokemonDetails.context";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
+
+import { PokemonBaseRequest } from "../../interfaces/interfaces";
+import { PokemonPageProps } from "../../interfaces";
+import ContainerCardDetails from "@/components/Pokemon/ContainerCardDetails";
 
 export const getStaticPaths = async () => {
-  const maxPokemon: number = 251;
+  const maxPokemon: number = 1000;
 
   const res = await api.get("", {
     params: {
@@ -21,7 +24,7 @@ export const getStaticPaths = async () => {
   });
 
   const paths = res.data.results.map(
-    (pokemon: iPokemonBaseRequest, index: number) => {
+    (pokemon: PokemonBaseRequest, index: number) => {
       return {
         params: { pokemonId: (index + 1).toString() },
       };
@@ -40,71 +43,35 @@ export const getStaticProps: GetStaticProps = async (context): Promise<any> => {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 
   const data = await res.json();
-
   return {
     props: { pokemon: data },
   };
 };
 
-export default function pokemonPage({ pokemon }: iPokemonPageProps) {
-  const { tagDetails } = usePokemonDetails();
+const pokemonPage = ({ pokemon }: PokemonPageProps) => {
+  const { tagDetails } = usePokemon();
 
   return (
     <>
-      <div className="flex justify-center items-center w-full h-[535px] bg-slate-100">
-        <div className="h-[450px] w-3/5 border-2 p-2 px-4 rounded-md border-brand-100 bg-brand-50 flex gap-5">
-          <div className="w-1/2 flex flex-col justify-around">
-            <div className="flex items-end justify-between">
-              <div className="mt-3">
-                <span className="text-xs text-brand-100 opacity-70">
-                  {pokemon.id >= 10 && pokemon.id <= 99
-                    ? `n 0${pokemon.id}`
-                    : pokemon.id < 10
-                    ? `n 00${pokemon.id}`
-                    : `n ${pokemon.id}`}
-                </span>
-                <h1 className="text-xl text-brand-150 font-semibold">
-                  {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
-                </h1>
-              </div>
-              <div className="flex gap-3">
-                {pokemon.types.map((obj: Type, index) => (
-                  <PokemonType
-                    typeId={
-                      Number(obj.type.url.slice(31, 33).replace("/", "")) - 1
-                    }
-                    key={index}
-                  >
-                    {obj.type.name[0].toUpperCase() + obj.type.name.slice(1)}
-                  </PokemonType>
-                ))}
-              </div>
-            </div>
-            <PokemonContainerImg
-              typeId={
-                Number(
-                  pokemon.types[0].type.url.slice(31, 33).replace("/", "")
-                ) - 1
-              }
-            >
-              <Image
-                src={pokemon.sprites.other.dream_world.front_default}
-                alt={pokemon.name}
-                width={180}
-                height={180}
-                className="object-cover"
-              />
-            </PokemonContainerImg>
-          </div>
-          <div className="w-1/2 flex flex-col pt-36 bg-violet-5000">
+      <div className="flex justify-center items-center w-full h-[535px] bg-slate-100 dark:bg-gray-950 min-h-[79.7vh] px-4">
+        <div className="relative lg:h-[450px] w-full lg:w-3/5 border-2 p-2 px-4 rounded-md border-brand-100 dark:border-brand-150 bg-brand-50 dark:bg-gray-800 flex flex-col lg:flex-row gap-5">
+          <ContainerCardDetails pokemon={pokemon} />
+
+          <div className="lg:w-1/2 flex flex-col lg:pt-36 bg-violet-5000">
             <TagsDetailsPokemon />
-            <div className="bg-brand-100 rounded-lg p-2">
-              {tagDetails == "Details" && <DetailsPokemon pokemon={pokemon}/>}
-              {tagDetails == "Stats" && <StatsPokemon pokemon={pokemon}/>}
+            <div className="bg-brand-100 dark:bg-gray-900 rounded-lg p-2">
+              {tagDetails == "Details" && <DetailsPokemon pokemon={pokemon} />}
+              {tagDetails == "Stats" && <StatsPokemon pokemon={pokemon} />}
             </div>
           </div>
+
+          <Link href={"/"} className="absolute top-4 right-4 buttonPage">
+            <FaArrowAltCircleLeft />
+          </Link>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default pokemonPage;

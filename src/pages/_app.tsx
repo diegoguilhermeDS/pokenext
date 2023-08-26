@@ -1,14 +1,14 @@
 import Layout from "@/components/Layout";
-import { PokemonDetailsProvider } from "@/providers/pokemonDetails.context";
+import { PokemonProvider } from "@/providers/pokemon.context";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <PokemonDetailsProvider>
+    <PokemonProvider>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </PokemonDetailsProvider>
+    </PokemonProvider>
   );
 }
