@@ -1,40 +1,21 @@
+import ControllPage from "@/components/ControllPage";
 import Search from "@/components/InputSearch";
-import { iHomeProps, iPokemonBaseRequest } from "./index.interfaces";
-import { api } from "@/services/api";
 import ListPokemon from "@/components/ListPokemon";
 
-export async function getStaticProps() {
-  const maxPokemon: number = 251;
 
-  const res = await api.get("", {
-    params: {
-      limit: maxPokemon,
-    },
-  });
-
-  res.data.results.forEach((item: iPokemonBaseRequest, index: number) => item.id = index+1)
-
-  return {
-    props: {
-      listPokemon: res.data.results,
-    },
-  };
-}
-
-export default function Home({ listPokemon }: iHomeProps) {
+export default function Home() {
   return (
-    <div className="container mx-auto pt-4 p-2">
+    <div className="container mx-auto pt-4 p-2 min-h-[79.7vh]">
       <section className="flex flex-col items-center gap-2">
-        <h1 className="font-semibold text-3xl text-center text-brand-150">
-          PokeNext
-        </h1>
-        <p className="text-brand-100 text-center">
+        <h2 className="text-center text-brand-100 dark:text-white">Poke<span className="text-brand-100 font-semibold text-4xl">Next</span></h2>
+        <p className="text-brand-100 dark:text-white text-center">
           Search for a Pokemon by name or using its National Pokedex number.
         </p>
         <Search />
       </section>
       <section className="mt-10">
-        <ListPokemon listPokemon={listPokemon}/>
+        <ListPokemon/>
+        <ControllPage/>
       </section>
     </div>
   );

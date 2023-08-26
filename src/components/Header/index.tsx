@@ -1,10 +1,12 @@
-import Link from "next/link";
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
+import { usePokemon } from "@/providers/pokemon.context";
 
-export default function Navbar() {
+export default function Header() {
+  const { changeTheme } = usePokemon();
+
   return (
-    <nav className="w-full bg-white h-16 shadow-sm">
+    <nav className="w-full bg-white dark:bg-gray-900 h-16 shadow-sm dark:shadow-white">
       <div className="container mx-auto p-2 h-full flex justify-between items-center">
         <div>
           <Link href="/">
@@ -52,7 +54,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <button>
+            <button onClick={changeTheme}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

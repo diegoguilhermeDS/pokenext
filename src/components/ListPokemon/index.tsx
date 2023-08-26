@@ -1,16 +1,15 @@
-import { iPokemonBaseRequest } from "@/pages/index.interfaces";
 import React from "react";
-import CardPokemon from "./cardPokemon";
+import CardPokemon from "../Pokemon/Card";
+import { usePokemon } from "@/providers/pokemon.context";
 
-interface iListPokemonProps {
-  listPokemon: iPokemonBaseRequest[];
-}
 
-export default function ListPokemon({ listPokemon }: iListPokemonProps) {
+export default function ListPokemon() {
+  const { pokemonList } = usePokemon();
+  
   return (
-    <ul className="grid grid-cols-5 gap-y-6 overflow-y-auto mx-auto h-[450px] md:w-[1200px] border-2 p-2 rounded-md border-brand-100 bg-brand-50">
-      {listPokemon.map((pokemon, index) => (
-        <CardPokemon pokemon={pokemon} key={index} />
+    <ul className="flex overflow-auto gap-6 lg:grid lg:grid-cols-5 lg:gap-y-6 mx-auto h-fit md:w-[1200px] p-2 rounded-md mb-10">
+      {pokemonList.map((pokemon) => (
+        <CardPokemon pokemon={pokemon} key={pokemon.name} />
       ))}
     </ul>
   );
