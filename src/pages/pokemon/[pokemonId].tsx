@@ -14,6 +14,8 @@ import { PokemonBaseRequest } from "../../interfaces/interfaces";
 import { PokemonPageProps } from "../../interfaces";
 import ContainerCardDetails from "@/components/Pokemon/ContainerCardDetails";
 
+export const revalidate = 60;
+
 export const getStaticPaths = async () => {
   const maxPokemon: number = 1000;
 
@@ -23,17 +25,17 @@ export const getStaticPaths = async () => {
     },
   });
 
-  const paths = res.data.results.map(
-    (pokemon: PokemonBaseRequest, index: number) => {
+  const paths = res.data.results
+    .slice(0, 5)
+    .map((pokemon: PokemonBaseRequest, index: number) => {
       return {
         params: { pokemonId: (index + 1).toString() },
       };
-    }
-  );
+    });
 
   return {
     paths,
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
