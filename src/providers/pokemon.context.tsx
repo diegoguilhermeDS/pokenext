@@ -20,8 +20,8 @@ interface PokemonContextProps {
   tagDetails: string;
   setTagDetails: Dispatch<SetStateAction<string>>;
   isNotHome: boolean;
-  pokemonList: PokemonBaseWithId[];
-  getpokemonInfor: (name: string) => Promise<PokemonRoot>;
+  pokemonList: PokemonRoot[];
+  getpokemon: (name: string) => Promise<PokemonRoot>;
   searchPokemon: (event: ChangeEvent<HTMLInputElement>) => void;
   nextPage: () => void;
   previusPage: () => void;
@@ -38,12 +38,12 @@ export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
   const [limit, setLimit] = useState(150);
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [theme, setTheme] = useState("dark")
-  const [pokemonList, setPokemonList] = useState<PokemonBaseWithId[]>(
-    [] as PokemonBaseWithId[]
+  const [theme, setTheme] = useState("light");
+  const [pokemonList, setPokemonList] = useState<PokemonRoot[]>(
+    [] as PokemonRoot[]
   );
-  const [firstPokemonList, setFirstPokemonList] = useState<PokemonBaseWithId[]>(
-    [] as PokemonBaseWithId[]
+  const [firstPokemonList, setFirstPokemonList] = useState<PokemonRoot[]>(
+    [] as PokemonRoot[]
   );
 
   const router = useRouter();
@@ -59,36 +59,69 @@ export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
       }
     };
 
-    const getPokemonList = async () => {
-      const res = await api.get("", {
-        params: {
-          limit: limit,
-          offset: offset,
-        },
-      });
+    chageStateIsNotHome();
+  }, [router.pathname]);
 
-      if (res.status == 200) {
-        res.data.results.forEach(
-          (pokemon: PokemonBaseWithId, index: number) =>
-            (pokemon.id = index + 1)
-        );
-        setFirstPokemonList(res.data.results);
-        setPokemonList(res.data.results);
+  useEffect(() => {
+    const getPokemonList = async () => {
+      try {
+        const pokemonListRequest = await getOnlySomePokemonInformation();
+
+        if (pokemonListRequest.status == 200) {
+          try {
+            const newList: PokemonRoot[] = await getAllPokemonInformation(pokemonListRequest.data.results);
+
+            setFirstPokemonList(newList);
+            setPokemonList(newList);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
 
-    getPokemonList();
-    chageStateIsNotHome();
-  }, [limit, offset, router]);
+    const getThemeFromLocalStorage = () => {
+      const theme = localStorage.getItem("theme") || "light";
+      setTheme(theme);
+    };
 
-  const getpokemonInfor = async (name: string) => {
+    getPokemonList();
+    getThemeFromLocalStorage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [limit, offset]);
+
+  const getpokemon = async (name: string) => {
     const res = await api.get(`${name}`);
 
-    return res.data;
+    const pokemon: PokemonRoot = res.data;
+
+    return pokemon;
   };
 
+  const getOnlySomePokemonInformation = async () => {
+    const res = await api.get("", {
+      params: {
+        limit: limit,
+        offset: offset,
+      },
+    });
+
+    return res
+  };
+
+  const getAllPokemonInformation = async (list: PokemonBaseWithId[]) => {
+    return await Promise.all(
+      list.map(async (pokemon: PokemonBaseWithId) => {
+        const newRequest = await getpokemon(pokemon.name);
+        return newRequest;
+      })
+    );
+  }
+
   const searchPokemon = async (event: ChangeEvent<HTMLInputElement>) => {
-    let valueByInput = event.target.value;
+    let valueByInput = event.target.value.trim();
 
     if (valueByInput.length <= 0) {
       setPokemonList(firstPokemonList);
@@ -106,14 +139,9 @@ export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
           const findPokemon = await api.get(`${valueByInput}`);
 
           const { data } = findPokemon;
-          setPokemonList([
-            {
-              name: data.name,
-              url: `${baseUrl}${data.name}`,
-              id: data.id,
-            },
-          ]);
+          setPokemonList([data]);
         } catch (error) {
+          console.log(error)
           setPokemonList(firstPokemonList);
         }
       }
@@ -135,12 +163,14 @@ export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
   };
 
   const changeTheme = () => {
-    if (theme == "dark"){
-      setTheme("light")
+    if (theme == "dark") {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
     } else {
-      setTheme("dark")
+      setTheme("dark");
+      localStorage.setItem("theme", "dark");
     }
-  }
+  };
 
   return (
     <PokemonContext.Provider
@@ -149,13 +179,13 @@ export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
         setTagDetails,
         isNotHome,
         pokemonList,
-        getpokemonInfor,
+        getpokemon,
         searchPokemon,
         nextPage,
         previusPage,
         currentPage,
         theme,
-        changeTheme
+        changeTheme,
       }}
     >
       {children}
