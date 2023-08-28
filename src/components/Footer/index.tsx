@@ -7,7 +7,7 @@ export default function Footer() {
   const { isNotHome } = usePokemon();
 
   return (
-    <footer className="bg-brand-100 dark:bg-gray-900 w-full h-24 shadow-sm bottom-0">
+    <footer className="bg-brand-100 dark:bg-gray-900 w-full h-24 shadow-sm">
       <div className="relative container mx-auto h-full flex justify-center items-center">
         <p className="text-white dark:text-brand-100">
           <span className="font-bold">PokeNext</span> &copy; 2023
