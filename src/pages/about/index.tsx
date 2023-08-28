@@ -3,7 +3,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center gap-6 h-[39.5rem] pt-9">
+    <div className="flex flex-col items-center gap-6 h-[39.5rem] pt-9 min-h-[79.7vh]">
       <h2 className="text-gray-700 dark:text-brand-100">Sobre o projeto</h2>
       <p className="lg:w-[500px] text-center dark:text-white">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium
