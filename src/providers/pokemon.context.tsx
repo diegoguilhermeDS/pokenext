@@ -35,7 +35,7 @@ const PokemonContext = createContext({} as PokemonContextProps);
 export const PokemonProvider = ({ children }: PokemonProvidersProps) => {
   const [tagDetails, setTagDetails] = useState("Details");
   const [isNotHome, setIsNotHome] = useState(false);
-  const [limit, setLimit] = useState(150);
+  const [limit, setLimit] = useState(50);
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [theme, setTheme] = useState("light");
