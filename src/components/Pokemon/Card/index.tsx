@@ -5,6 +5,7 @@ import { PokemonRoot } from "@/interfaces/pokemon.interfaces";
 import TagType from "../TagType";
 import ContainerImgPokemon from "../ContainerImg";
 import NumberPokedex from "../NumberPokedex";
+import { CardEmpty } from "../CardEmpty";
 
 interface CardPokemonProps {
   pokemon: PokemonRoot;
@@ -20,8 +21,8 @@ export default function CardPokemon({ pokemon }: CardPokemonProps) {
 
   return (
     <>
-      {pokemon && (
-        <Link href={`/pokemon/${pokemon.id}`}>
+      <Link href={`/pokemon/${pokemon.id}`}>
+        {pokemon && (
           <li className="card transition-500 group">
             <ContainerImgPokemon type={pokemon.types[0].type.name}>
               <Image
@@ -44,8 +45,8 @@ export default function CardPokemon({ pokemon }: CardPokemonProps) {
               </div>
             </div>
           </li>
-        </Link>
-      )}
+        )}
+      </Link>
     </>
   );
 }
