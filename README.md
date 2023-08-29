@@ -20,7 +20,7 @@
   </a>
 </p>
 
-<div align="center"><img width="1000" src=""></div>
+<div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-banner.png"/></div>
 
 /<h4 align="center"> 
 	🚧  PokeNext <img alt="Pokeball icon" src="https://github.com/diegoguilhermeDS/pokenext/blob/aee71a3e507d8a6c87cfc59a7ee1e7a994d87fb5/public/images/pokeball.png" style="width: 15px" /> - Concluído 🚀 🚧
@@ -46,17 +46,22 @@ O layout da aplicação está disponível no Figma:
 </a>
 
 ### Mobile
-<-- modelo de layout
+
 <div align="center" justify="center">
-  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login.png">
-  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b4311bbabd001ed3153cf2340121ed4976128be5/public/login%20-%20header.png">
-  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b6ab2482b9d67984aa862b19d786b802265f1c19/public/register.png">
-  <img width="150" src="https://github.com/diegoguilhermeDS/connect-sphere/blob/b6ab2482b9d67984aa862b19d786b802265f1c19/public/dashboard.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-mobile.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-mobile-darkmode.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-mobile-pokemon-details.png">
+  <img width="150" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-mobile-pokemon-details-darkmode.png">
 </div>
--->
 
 ### Web
-<-- coloque aqui o layout -->
+<div align="center" >
+  <img width="350" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-banner.png">
+  <img width="350" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-desktop-darkmode.png">
+  <img width="350" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-desktop-pokemon-details.png">
+  <img width="350" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-desktop-pokemon-details-darkmode.png">
+  <img width="350" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-desktop-about.png">
+</div>
 
 ## 🚀 Como executar o projeto
 
