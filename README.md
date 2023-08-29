@@ -22,7 +22,7 @@
 
 <div align="center"><img width="1000" src="https://github.com/diegoguilhermeDS/pokenext/blob/62745e2e64f6120e327d7838b576f0e86ba17eb0/public/images/PokeNext-banner.png"/></div>
 
-/<h4 align="center"> 
+<h4 align="center"> 
 	🚧  PokeNext <img alt="Pokeball icon" src="https://github.com/diegoguilhermeDS/pokenext/blob/aee71a3e507d8a6c87cfc59a7ee1e7a994d87fb5/public/images/pokeball.png" style="width: 15px" /> - Concluído 🚀 🚧
 </h4>
 
