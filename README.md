@@ -39,11 +39,6 @@ PokeNext é um emocionante projeto front end desenvolvido em Next.js, repleto de
 
 
 ## 🎨 Layout
-O layout da aplicação está disponível no Figma:
-
-<a href="">
-  <img alt="Made by diegoguilhermeDS" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
-</a>
 
 ### Mobile
 
