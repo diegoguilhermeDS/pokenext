@@ -83,14 +83,14 @@ $ cd pokenext
 
 ```
 
-All commands are run from the root of the project, from a terminal:
+Todos os comandos são executados na raiz do projeto, em um terminal:
 
 | Command | Action |
 |:---------------- |:-------------------------------------------- |
-| `npm install` | Installs dependencies |
-| `npm run dev` | Starts local dev server at `localhost:3000` |
-| `npm run build` | Build your production site to `./dist/` |
-| `npm run start` | Preview your build locally, before deploying |
+| `npm install` | Instala dependências |
+| `npm run dev` | Inicia o servidor de desenvolvimento local em `localhost:3000` |
+| `npm run build` | Build seu site de produção para `./dist/` |
+| `npm run start` | Visualize seu build localmente, antes de fazer deploy |
 
 ## 🦸 Autor
 
